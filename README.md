@@ -4,7 +4,7 @@ Now get source code of an algorithm of a language in `Sublime Text`, without lea
 
 ![Demo gif](https://github.com/VinayakBagaria/SourceFetch/blob/master/example.gif)
 
-Inspired from - [Sourcefetch for Atom](https://github.com/tspenov/sourcefetch)
+Inspired from - [Sourcerer for Atom](https://github.com/NickTikhonov/sourcerer)
 
 --------------------
 
