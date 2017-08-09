@@ -3,20 +3,12 @@ import sublime_plugin
 import os
 import sys
 
-BASE_PATH = os.path.abspath(os.path.dirname(__file__))
-PACKAGES_PATH = sublime.packages_path() or os.path.dirname(BASE_PATH)
+sys.path.append(os.path.join(os.path.dirname(__file__), "ext"))
 
-google_path = [BASE_PATH] + [os.path.join(BASE_PATH, f) for f in ['google']]
-
-if google_path not in sys.path:
-	sys.path += [BASE_PATH] + [os.path.join(BASE_PATH, f) for f in ['google', 'bs4', 'urllib3']]
-
-import urllib3
+from urllib3 import request
 from google import search
 from bs4 import BeautifulSoup
 
-
-urllib3.disable_warnings()
 
 class SourceFetchCommand(sublime_plugin.TextCommand):
 	def run(self,edit):
@@ -39,7 +31,7 @@ class SourceFetchCommand(sublime_plugin.TextCommand):
 		query = '{} in {} site:stackoverflow.com'.format(selection,language)
 
 		for url in search(query, stop = 1):
-			response = urllib3.PoolManager().request('GET', url)
+			response = request.urlopen(url).read()
 			soup = BeautifulSoup(response.data, "html.parser")
 
 			try:
