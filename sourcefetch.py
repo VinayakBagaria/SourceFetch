@@ -6,7 +6,6 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "ext"))
 
 import urllib
-import requests
 from bs4 import BeautifulSoup
 
 
@@ -34,8 +33,10 @@ class SourceFetchCommand(sublime_plugin.TextCommand):
 
 
 		google_url = "https://www.google.com/search?q="+query
-		r = requests.get(google_url)
-		soup = BeautifulSoup(r.text, "html.parser")
+		request = urllib.request.Request(google_url,headers={'User-Agent':'Sublime Text'})
+		r = urllib.request.urlopen(request).read()
+		soup = BeautifulSoup(r, "html.parser")
+
 
 		for item in soup.find_all('h3', attrs={'class' : 'r'}):
 		    first_url = item.a['href'][7:]

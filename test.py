@@ -13,8 +13,9 @@ query = query.replace(" ", "+")
 
 url = "https://www.google.com/search?q="+query+"&gbv=1&sei=YwHNVpHLOYiWmQHk3K24Cw"
 print(url)
-r = requests.get(url)
-soup = BeautifulSoup(r.text, "html.parser")
+request = urllib.request.Request(url,headers={'User-Agent':'Sublime Text'})
+r = urllib.request.urlopen(request).read()
+soup = BeautifulSoup(r, "html.parser")
 
 for item in soup.find_all('h3', attrs={'class' : 'r'}):
     url = item.a['href'][7:]
