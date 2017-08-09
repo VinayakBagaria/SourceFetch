@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "ext"))
 
 import urllib
-from google import search
+import requests
 from bs4 import BeautifulSoup
 
 
@@ -30,25 +30,30 @@ class SourceFetchCommand(sublime_plugin.TextCommand):
 
 		query = '{} in {} site:stackoverflow.com'.format(selection,language)
 
-		for url in search(query, stop = 1):
-			response = urllib.request.urlopen(url).read()
-			soup = BeautifulSoup(response, "html.parser")
+		query = query.replace(" ", "+")
 
+
+		google_url = "https://www.google.com/search?q="+query
+		r = requests.get(google_url)
+		soup = BeautifulSoup(r.text, "html.parser")
+
+		for item in soup.find_all('h3', attrs={'class' : 'r'}):
+		    first_url = item.a['href'][7:]
+		    break
+
+		response = urllib.request.urlopen(first_url).read()
+		soup = BeautifulSoup(response, "html.parser")
+
+		for item in soup.find_all('div', attrs={'class' : 'answer'}):
 			try:
-				code = soup.find('div', attrs = {
-					'class' : 'accepted-answer'
-				}).find('pre').find('code').text
-
+				code = item.find('pre').find('code').text
 				self.view.replace(edit, sels[0], code)
-
 				messages.append("{} - Completed searching".format(language))
-			
-			except Exception as e:
-				messages.append('{} - Error in finding a good code for you'.format(language))	
-			self.show_quick_panel(messages, self.view.window())
-			return
+				return
+			except:
+				continue
 
-		messages.append("{} - Google searching failed".format(language))
+		messages.append("{} - Error in finding a good code for you".format(language))
 		self.show_quick_panel(messages, self.view.window())
 
 
