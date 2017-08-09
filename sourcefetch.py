@@ -5,7 +5,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "ext"))
 
-from urllib3 import request
+import urllib
 from google import search
 from bs4 import BeautifulSoup
 
@@ -31,8 +31,8 @@ class SourceFetchCommand(sublime_plugin.TextCommand):
 		query = '{} in {} site:stackoverflow.com'.format(selection,language)
 
 		for url in search(query, stop = 1):
-			response = request.urlopen(url).read()
-			soup = BeautifulSoup(response.data, "html.parser")
+			response = urllib.request.urlopen(url).read()
+			soup = BeautifulSoup(response, "html.parser")
 
 			try:
 				code = soup.find('div', attrs = {
