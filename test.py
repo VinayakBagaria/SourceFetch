@@ -5,7 +5,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "ext"))
 
 from bs4 import BeautifulSoup
 import urllib
-import requests
 
 query = 'linear search in python site:stackoverflow.com'
 query = query.replace(" ", "+")
