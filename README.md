@@ -15,6 +15,12 @@ Inspired from - [Sourcefetch for Atom](https://github.com/tspenov/sourcefetch)
 2. Restart Sublime Text editor.
 3. Ctrl+Shift+P and start getting codes from online.
 
+## Modules used
+
+1. urllib
+2. requests
+3. BeautifulSoup
+
 ## Contributing or Issues
 
 Give a pull request or suggest some changes.
