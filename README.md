@@ -2,7 +2,7 @@
 
 Now get source code of an algorithm of a language in `Sublime Text`, without leaving the edior.
 
-![Demo gif](https://raw.githubusercontent.com/VinayakBagaria/SourceFetch/master/example.gif)
+![Demo gif](https://github.com/VinayakBagaria/SourceFetch/blob/master/example.gif)
 
 Inspired from - [Sourcefetch for Atom](https://github.com/tspenov/sourcefetch)
 
