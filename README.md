@@ -11,7 +11,8 @@ Inspired from - [Sourcerer for Atom](https://github.com/NickTikhonov/sourcerer)
 ## Setup Instructions
 
 1. Download `SourceFetch.sublime-package` into `Installed Packages`.
-	Go to Preferences (Sublime Text menu) -> Browse Packages -> Go back a folder -> Installed Packages
+	MAC - /Users/<username>/Application Support/Sublime Text 3/Installed Packages
+	Windows - C:\Users\<username>\AppData\Roaming\Sublime Text 3\Installed Packages
 2. Restart Sublime Text editor.
 3. Like the gif above, set the `syntax` in command pallete(Ctrl+Shift+P). Highlight what you want, call `Source Fetch` from command pallete(Ctrl+Shift+P) and start getting codes from online.
 
