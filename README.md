@@ -19,8 +19,9 @@ Inspired from - [Sourcerer for Atom](https://github.com/NickTikhonov/sourcerer)
 ## Modules used
 
 1. urllib
-2. requests
-3. BeautifulSoup
+2. BeautifulSoup
+3. os
+4. sys
 
 ## Contributing or Issues
 
